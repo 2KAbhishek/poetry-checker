@@ -1,0 +1,11 @@
+Haiku
+5 *
+7 *
+5 *
+
+Limerick
+8 A
+8 A
+5 B
+5 B
+8 A
