@@ -117,6 +117,21 @@ class TestCheckSyllableCounts(unittest.TestCase):
         expected = []
         self.assertEqual(actual, expected, 'check syllable counts')
 
+class TestAllLinesRhyme(unittest.TestCase):
+    word_to_phonemes = {'THE': ('DH', 'AH0'),
+                        'MOUSE': ('M', 'AW1', 'S'),
+                        'IN': ('IH0', 'N'),
+                        'MY': ('M', 'AY1'),
+                        'HOUSE': ('HH', 'AW1', 'S'),
+                        'ELECTRIC': ('IH0', 'L', 'EH1', 'K',
+                                     'T', 'R', 'IH0', 'K')}
+    def test_all_lines_rhyme(self):
+        """Test all_lines_rhyme on poem lines."""
+        poem_lines = ['The mouse', 'in my house', 'electric.']
+        lines_to_check = [0, 1]
+        rhymes = poetry_functions.all_lines_rhyme(poem_lines, lines_to_check, self.word_to_phonemes)
+        self.assertTrue(rhymes, 'all lines rhyme')
+
 
 class TestReadPronunciation(unittest.TestCase):
     def test_read_pronunciation(self):
