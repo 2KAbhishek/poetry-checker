@@ -26,7 +26,6 @@ All of the files in this folder are:
 Copyright (c) 2022 the University of Toronto CSC108 Teaching Team.
 """
 
-from distutils.command.clean import clean
 from typing import List, Tuple, Dict
 
 from poetry_constants import (POEM_LINE, POEM, PHONEMES, PRONUNCIATION_DICT,
@@ -103,7 +102,6 @@ def get_syllable_count(poem_line: POEM_LINE,
     5
     """
     poem_line = clean_str(poem_line)
-    print(poem_line)
     words = poem_line.split()
     syllable_count = 0
     for word in words:
@@ -295,7 +293,14 @@ def check_rhyme_scheme(poem_lines: POEM,
     >>> bad_lines
     [['The first line leads off,', 'Then the poem ends.']]
     """
-
+    rhyme_scheme = description[1]
+    symbol_to_lines = get_symbol_to_lines(rhyme_scheme)
+    bad_lines = []
+    for symbol in symbol_to_lines:
+        lines_to_check = symbol_to_lines[symbol]
+        if not all_lines_rhyme(poem_lines, lines_to_check, word_to_phonemes):
+            bad_lines.append([poem_lines[i] for i in lines_to_check])
+    return bad_lines
 
 if __name__ == '__main__':
     import doctest
