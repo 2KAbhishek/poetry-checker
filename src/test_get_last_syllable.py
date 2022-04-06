@@ -41,6 +41,13 @@ class TestGetLastSyllable(unittest.TestCase):
 
     # Place your unit test definitions after this line.
 
+    def test_get_last_syllable(self):
+        """Test get_last_syllable on a tuple with one syllable."""
+
+        actual = poetry_functions.get_last_syllable(('AE1', 'B', 'S', 'IH0', 'N', 'TH'))
+        expected = ('IH0', 'N', 'TH')
+        self.assertEqual(actual, expected, 'get syllables')
+
 
 # Place your unit test definitions before this line.
 if __name__ == '__main__':
