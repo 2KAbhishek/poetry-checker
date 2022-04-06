@@ -67,18 +67,47 @@ class TestGetSyllableCount(unittest.TestCase):
 
 class TestWordsRhyme(unittest.TestCase):
     word_to_phonemes = {'THINE': ('DH', 'AY1', 'N'),
-                            'DEVINE': ('D', 'AH0', 'V', 'AY1', 'N'),
-                            'HEARD': ('HH', 'ER1', 'D')}
+                        'DEVINE': ('D', 'AH0', 'V', 'AY1', 'N'),
+                        'HEARD': ('HH', 'ER1', 'D')}
 
     def test_words_rhyme(self):
-        """Test words_rhyme on a poem line."""
-        rhymes = poetry_functions.words_rhyme('thine', 'devine', self.word_to_phonemes)
+        """Test words_rhyme on a poem line, positive case."""
+        rhymes = poetry_functions.words_rhyme(
+            'thine', 'devine', self.word_to_phonemes)
         self.assertTrue(rhymes, 'words rhyme')
 
     def test_words_dont_rhyme(self):
-        """Test words_rhyme on a poem line."""
-        rhymes = poetry_functions.words_rhyme('thine', 'heard', self.word_to_phonemes)
+        """Test words_rhyme on a poem line, negative case."""
+        rhymes = poetry_functions.words_rhyme(
+            'thine', 'heard', self.word_to_phonemes)
         self.assertFalse(rhymes, 'words do not rhyme')
+
+
+class TestCheckSyllableCounts(unittest.TestCase):
+    word_to_phonemes = {'NEXT': ('N', 'EH1', 'K', 'S', 'T'),
+                        'GAP': ('G', 'AE1', 'P'),
+                        'BEFORE': ('B', 'IH0', 'F', 'AO1', 'R'),
+                        'LEADS': ('L', 'IY1', 'D', 'Z'),
+                        'WITH': ('W', 'IH1', 'DH'),
+                        'LINE': ('L', 'AY1', 'N'),
+                        'THEN': ('DH', 'EH1', 'N'),
+                        'THE': ('DH', 'AH0'),
+                        'A': ('AH0'),
+                        'FIRST': ('F', 'ER1', 'S', 'T'),
+                        'ENDS': ('EH1', 'N', 'D', 'Z'),
+                        'POEM': ('P', 'OW1', 'AH0', 'M'),
+                        'OFF': ('AO1', 'F')}
+
+    def test_check_syllable_counts(self):
+        """Test check_syllable_counts on poem lines."""
+        poem_lines = ['The first line leads off,',
+                      'With a gap before the next.', 'Then the poem ends.']
+        description = ((5, 5, 4), ('*', '*', '*'))
+
+        actual = poetry_functions.check_syllable_counts(poem_lines, description, self.word_to_phonemes)
+        expected = ['With a gap before the next.', 'Then the poem ends.']
+        self.assertEqual(actual, expected, 'check syllable counts')
+
 
 class TestReadPronunciation(unittest.TestCase):
     def test_read_pronunciation(self):
