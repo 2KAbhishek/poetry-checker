@@ -28,6 +28,7 @@ Copyright (c) 2022 the University of Toronto CSC108 Teaching Team.
 
 import unittest
 import poetry_functions
+import poetry_reader
 
 
 class TestGetLastSyllable(unittest.TestCase):
@@ -49,6 +50,7 @@ class TestGetLastSyllable(unittest.TestCase):
         expected = ('IH0', 'N', 'TH')
         self.assertEqual(actual, expected, 'get syllables')
 
+
 class TestGetSyllableCount(unittest.TestCase):
     def test_get_syllable_count(self):
         """Test get_syllable_count on a poem line."""
@@ -61,6 +63,19 @@ class TestGetSyllableCount(unittest.TestCase):
         actual = poetry_functions.get_syllable_count(line, word_to_phonemes)
         expected = 5
         self.assertEqual(actual, expected, 'get syllable count')
+
+
+class TestReadPronunciation(unittest.TestCase):
+    def test_read_pronunciation(self):
+        """Test phonemes on a pronunciation dictionary."""
+        import os
+        small_pd = open(os.path.dirname(__file__) + '/datasets/pronunciation_dictionary_small.txt')
+        actual = poetry_reader.read_pronunciation(small_pd)
+
+        expected = {'CAMPBELL': ('K', 'AE1', 'M', 'B', 'AH0', 'L'),
+                    'GRIES': ('G', 'R', 'AY1', 'Z'),
+                    'SMITH': ('S', 'M', 'IH1', 'TH')}
+        self.assertEqual(actual, expected, 'read pronunciation')
 
 
 # Place your unit test definitions before this line.
