@@ -65,6 +65,21 @@ class TestGetSyllableCount(unittest.TestCase):
         self.assertEqual(actual, expected, 'get syllable count')
 
 
+class TestWordsRhyme(unittest.TestCase):
+    word_to_phonemes = {'THINE': ('DH', 'AY1', 'N'),
+                            'DEVINE': ('D', 'AH0', 'V', 'AY1', 'N'),
+                            'HEARD': ('HH', 'ER1', 'D')}
+
+    def test_words_rhyme(self):
+        """Test words_rhyme on a poem line."""
+        rhymes = poetry_functions.words_rhyme('thine', 'devine', self.word_to_phonemes)
+        self.assertTrue(rhymes, 'words rhyme')
+
+    def test_words_dont_rhyme(self):
+        """Test words_rhyme on a poem line."""
+        rhymes = poetry_functions.words_rhyme('thine', 'heard', self.word_to_phonemes)
+        self.assertFalse(rhymes, 'words do not rhyme')
+
 class TestReadPronunciation(unittest.TestCase):
     def test_read_pronunciation(self):
         """Test phonemes on a pronunciation dictionary."""
