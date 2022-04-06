@@ -72,6 +72,17 @@ def is_vowel_phoneme(phoneme: str) -> bool:
 # ===================== Add Your Helper Functions Here =====================
 
 def clean_str(line: str) -> str:
+    """Return a new string based on line in which all punctuation has
+    been removed amd the case has been changed to uppercase.
+    Also removes inner punctuation.
+
+    >>> clean_str('Birthday!!!')
+    'BIRTHDAY'
+    >>> clean_str('"Quoted?"')
+    'QUOTED'
+    >>> clean_str('To be? Or not to be?')
+    'TO BE OR NOT TO BE'
+    """
     punctuation = """!"'`@$%^&_-+={}|\\/,;:.-?)([]<>*#\n\t\r"""
     temp_line = []
     for char in line:
