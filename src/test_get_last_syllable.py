@@ -138,6 +138,13 @@ class TestAllLinesRhyme(unittest.TestCase):
         rhymes = poetry_functions.all_lines_rhyme(self.poem_lines, lines_to_check, self.word_to_phonemes)
         self.assertFalse(rhymes, 'all lines do not rhyme')
 
+class TestGetSymbolToLines(unittest.TestCase):
+    def test_get_sympol_to_lines(self):
+        """Test to generate symbols for lines"""
+        actual = poetry_functions.get_symbol_to_lines(('A', 'A', 'B', 'B', 'A'))
+        expected = {'A': [0, 1, 4], 'B': [2, 3]}
+        self.assertEqual(actual, expected, 'get symbol to lines')
+
 
 class TestReadPronunciation(unittest.TestCase):
     def test_read_pronunciation(self):
