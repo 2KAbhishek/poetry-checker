@@ -104,7 +104,8 @@ class TestCheckSyllableCounts(unittest.TestCase):
                       'With a gap before the next.', 'Then the poem ends.']
         description = ((5, 5, 4), ('*', '*', '*'))
 
-        actual = poetry_functions.check_syllable_counts(poem_lines, description, self.word_to_phonemes)
+        actual = poetry_functions.check_syllable_counts(
+            poem_lines, description, self.word_to_phonemes)
         expected = ['With a gap before the next.', 'Then the poem ends.']
         self.assertEqual(actual, expected, 'check syllable counts')
 
@@ -113,9 +114,11 @@ class TestCheckSyllableCounts(unittest.TestCase):
         poem_lines = ['The first line leads off,']
         description = ((0,), ('*'))
 
-        actual = poetry_functions.check_syllable_counts(poem_lines, description, self.word_to_phonemes)
+        actual = poetry_functions.check_syllable_counts(
+            poem_lines, description, self.word_to_phonemes)
         expected = []
         self.assertEqual(actual, expected, 'check syllable counts')
+
 
 class TestAllLinesRhyme(unittest.TestCase):
     word_to_phonemes = {'THE': ('DH', 'AH0'),
@@ -126,30 +129,37 @@ class TestAllLinesRhyme(unittest.TestCase):
                         'ELECTRIC': ('IH0', 'L', 'EH1', 'K',
                                      'T', 'R', 'IH0', 'K')}
     poem_lines = ['The mouse', 'in my house', 'electric.']
+
     def test_all_lines_rhyme(self):
         """Test all_lines_rhyme on poem lines."""
         lines_to_check = [0, 1]
-        rhymes = poetry_functions.all_lines_rhyme(self.poem_lines, lines_to_check, self.word_to_phonemes)
+        rhymes = poetry_functions.all_lines_rhyme(
+            self.poem_lines, lines_to_check, self.word_to_phonemes)
         self.assertTrue(rhymes, 'all lines rhyme')
 
     def test_all_lines_dont_rhyme(self):
         """Test all_lines_rhyme on poem lines, negative case."""
         lines_to_check = [0, 1, 2]
-        rhymes = poetry_functions.all_lines_rhyme(self.poem_lines, lines_to_check, self.word_to_phonemes)
+        rhymes = poetry_functions.all_lines_rhyme(
+            self.poem_lines, lines_to_check, self.word_to_phonemes)
         self.assertFalse(rhymes, 'all lines do not rhyme')
+
 
 class TestGetSymbolToLines(unittest.TestCase):
     def test_get_sympol_to_lines(self):
         """Test to generate symbols for lines"""
-        actual = poetry_functions.get_symbol_to_lines(('A', 'A', 'B', 'B', 'A'))
+        actual = poetry_functions.get_symbol_to_lines(
+            ('A', 'A', 'B', 'B', 'A'))
         expected = {'A': [0, 1, 4], 'B': [2, 3]}
         self.assertEqual(actual, expected, 'get symbol to lines')
 
     def test_get_sympol_to_lines_asterisk(self):
         """Test to generate symbols for lines, asterisks case"""
-        actual = poetry_functions.get_symbol_to_lines(('*', '*', '*', '*', '*'))
+        actual = poetry_functions.get_symbol_to_lines(
+            ('*', '*', '*', '*', '*'))
         expected = {'*': [0, 1, 2, 3, 4]}
         self.assertEqual(actual, expected, 'get symbol to lines')
+
 
 class TestCheckRhymeScheme(unittest.TestCase):
     word_to_phonemes = {'NEXT': ('N', 'EH1', 'K', 'S', 'T'),
@@ -169,14 +179,15 @@ class TestCheckRhymeScheme(unittest.TestCase):
     def test_check_rhyme_scheme(self):
         """Test check_rhyme_scheme on poem lines."""
         poem_lines = ['The first line leads off,',
-                  'With a gap before the next.', 'Then the poem ends.']
+                      'With a gap before the next.', 'Then the poem ends.']
         description = ((5, 7, 5), ('A', 'B', 'A'))
 
         actual = poetry_functions.check_rhyme_scheme(poem_lines, description,
-                                    self.word_to_phonemes)
+                                                     self.word_to_phonemes)
         actual.sort()
         expected = [['The first line leads off,', 'Then the poem ends.']]
         self.assertEqual(actual, expected, 'check rhyme scheme')
+
 
 class TestReadPronunciation(unittest.TestCase):
     def test_read_pronunciation(self):
