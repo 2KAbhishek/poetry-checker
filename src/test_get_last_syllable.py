@@ -125,12 +125,18 @@ class TestAllLinesRhyme(unittest.TestCase):
                         'HOUSE': ('HH', 'AW1', 'S'),
                         'ELECTRIC': ('IH0', 'L', 'EH1', 'K',
                                      'T', 'R', 'IH0', 'K')}
+    poem_lines = ['The mouse', 'in my house', 'electric.']
     def test_all_lines_rhyme(self):
         """Test all_lines_rhyme on poem lines."""
-        poem_lines = ['The mouse', 'in my house', 'electric.']
         lines_to_check = [0, 1]
-        rhymes = poetry_functions.all_lines_rhyme(poem_lines, lines_to_check, self.word_to_phonemes)
+        rhymes = poetry_functions.all_lines_rhyme(self.poem_lines, lines_to_check, self.word_to_phonemes)
         self.assertTrue(rhymes, 'all lines rhyme')
+
+    def test_all_lines_dont_rhyme(self):
+        """Test all_lines_rhyme on poem lines, negative case."""
+        lines_to_check = [0, 1, 2]
+        rhymes = poetry_functions.all_lines_rhyme(self.poem_lines, lines_to_check, self.word_to_phonemes)
+        self.assertFalse(rhymes, 'all lines do not rhyme')
 
 
 class TestReadPronunciation(unittest.TestCase):
