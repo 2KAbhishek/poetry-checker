@@ -228,6 +228,13 @@ def all_lines_rhyme(poem_lines: POEM, lines_to_check: List[int],
     >>> all_lines_rhyme(poem_lines, lines_to_check, word_to_phonemes)
     True
     """
+    words_to_check = [poem_lines[i].split()[-1] for i in lines_to_check]
+    for word in words_to_check:
+        for other_word in words_to_check:
+            if word != other_word and not words_rhyme(word, other_word,
+                                                       word_to_phonemes):
+                return False
+    return True
 
 
 def get_symbol_to_lines(rhyme_scheme: Tuple[str]) -> Dict[str, List[int]]:
