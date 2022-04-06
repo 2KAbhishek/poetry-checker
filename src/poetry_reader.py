@@ -33,6 +33,15 @@ from poetry_constants import (POETRY_FORMS_DICT, PRONUNCIATION_DICT)
 
 # ===================== Add Your Helper Functions Here =====================
 def get_poetry_form_names(poetry_forms_file: TextIO) -> List[str]:
+    """Return a list of poetry form names in poetry_forms_file.
+    >>> import os
+    >>> small_pf = open(os.path.dirname(__file__) +\
+     '/datasets/poetry_forms_small.txt')
+    >>> poetry_form_names = get_poetry_form_names(small_pf)
+    >>> small_pf.close()
+    >>> poetry_form_names == ['Haiku', 'Limerick']
+    True
+    """
     poetry_forms_file.seek(0)
     poetry_form_names = []
     for line in poetry_forms_file:
