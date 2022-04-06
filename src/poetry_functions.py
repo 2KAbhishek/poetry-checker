@@ -161,7 +161,8 @@ def check_syllable_counts(poem_lines: POEM,
     for index in range(len(poem_lines)):
         if description[0][index] == 0:
             continue
-        if get_syllable_count(poem_lines[index], word_to_phonemes) != description[0][index]:
+        if get_syllable_count(poem_lines[index], word_to_phonemes) \
+                != description[0][index]:
             invalid_lines.append(poem_lines[index])
 
     return invalid_lines
@@ -208,8 +209,8 @@ def words_rhyme(word1: str, word2: str, word_to_phonemes: PRONUNCIATION_DICT) \
     """
     word1_phonemes = word_to_phonemes[clean_str(word1)]
     word2_phonemes = word_to_phonemes[clean_str(word2)]
-    return get_last_syllable(word1_phonemes) == get_last_syllable(word2_phonemes)
-
+    return get_last_syllable(word1_phonemes)\
+        == get_last_syllable(word2_phonemes)
 
 
 def all_lines_rhyme(poem_lines: POEM, lines_to_check: List[int],
@@ -241,7 +242,7 @@ def all_lines_rhyme(poem_lines: POEM, lines_to_check: List[int],
     for word in words_to_check:
         for other_word in words_to_check:
             if word != other_word and not words_rhyme(word, other_word,
-                                                       word_to_phonemes):
+                                                      word_to_phonemes):
                 return False
     return True
 
@@ -312,6 +313,7 @@ def check_rhyme_scheme(poem_lines: POEM,
         if not all_lines_rhyme(poem_lines, lines_to_check, word_to_phonemes):
             bad_lines.append([poem_lines[i] for i in lines_to_check])
     return bad_lines
+
 
 if __name__ == '__main__':
     import doctest
