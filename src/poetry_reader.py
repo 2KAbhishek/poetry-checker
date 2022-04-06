@@ -82,6 +82,16 @@ def get_poetry_form_name_lines(poetry_forms_file: TextIO,
 
 def get_poetry_form_details(poetry_forms_file: TextIO,
                             lines: List[int]) -> Tuple[Tuple[int], Tuple[str]]:
+    """Return the details for the poetry form in poetry_forms_file that
+    starts at the first lines[0] and ends at the lines[1].
+    >>> import os
+    >>> small_pf = open(os.path.dirname(__file__) +\
+        '/datasets/poetry_forms_small.txt')
+    >>> poetry_form_details = get_poetry_form_details(small_pf, [1, 3])
+    >>> small_pf.close()
+    >>> poetry_form_details == ((5, 7, 5), ('*', '*', '*'))
+    True
+    """
     syllable_counts = []
     rhyming_part = []
     i = 0
