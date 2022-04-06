@@ -44,6 +44,27 @@ def get_poetry_form_names(poetry_forms_file: TextIO) -> List[str]:
     print(poetry_form_names)
     return poetry_form_names
 
+def get_poetry_form_name_lines(poetry_forms_file: TextIO, poetry_form_name: str) -> List[int]:
+    start, end, index = -1, -1, 0
+    poetry_forms_file.seek(0)
+    print(poetry_form_name)
+    for line in poetry_forms_file:
+        print("Line: " + line)
+        print("index: " + str(index))
+        print("start: " + str(start))
+        print("end: " + str(end))
+        print("len(line): " + str(len(line)))
+        line = line.strip()
+        if len(line) == 0 and start != -1:
+            end = index - 1
+        if line.strip() == poetry_form_name:
+            start = index + 1
+        if start != -1 and end != -1:
+            break
+        index += 1
+    end = index - 1 if end == -1 else end
+    print ([start, end])
+    return [start, end]
 
 # ===================== Required Functions =================================
 
