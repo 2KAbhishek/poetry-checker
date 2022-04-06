@@ -101,6 +101,16 @@ def get_syllable_count(poem_line: POEM_LINE,
     >>> get_syllable_count(line, word_to_phonemes)
     5
     """
+    poem_line = clean_punctuation(transform_string(poem_line))
+    print(poem_line)
+    words = poem_line.split()
+    syllable_count = 0
+    for word in words:
+        phonemes = words_to_phonemes[word]
+        for phoneme in phonemes:
+            if phoneme[-1] in '012':
+                syllable_count += 1
+    return syllable_count
 
 
 def check_syllable_counts(poem_lines: POEM,
