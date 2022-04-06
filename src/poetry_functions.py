@@ -148,6 +148,14 @@ def check_syllable_counts(poem_lines: POEM,
     >>> check_syllable_counts(poem_lines, description, word_to_phonemes)
     []
     """
+    invalid_lines = []
+    for index in range(len(poem_lines)):
+        if description[0][index] == 0:
+            continue
+        if get_syllable_count(poem_lines[index], word_to_phonemes) != description[0][index]:
+            invalid_lines.append(poem_lines[index])
+
+    return invalid_lines
 
 
 # Functions related to rhyming
