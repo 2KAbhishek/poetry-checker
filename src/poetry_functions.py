@@ -71,6 +71,14 @@ def is_vowel_phoneme(phoneme: str) -> bool:
 
 # ===================== Add Your Helper Functions Here =====================
 
+def clean_punctuation(line: str) -> str:
+    punctuation = """!"'`@$%^&_-+={}|\\/,;:.-?)([]<>*#\n\t\r"""
+    temp_line = []
+    for char in line:
+        if char not in punctuation:
+            temp_line.append(char)
+    return ''.join(temp_line)
+
 
 # ===================== Required Functions =================================
 
