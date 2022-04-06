@@ -148,6 +148,10 @@ def get_last_syllable(word_phonemes: PHONEMES) -> PHONEMES:
     >>> get_last_syllable(('B', 'S'))
     ()
     """
+    for i in range(len(word_phonemes) - 1, -1, -1):
+        if is_vowel_phoneme(word_phonemes[i]):
+            return word_phonemes[i:]
+    return ()
 
 
 def words_rhyme(word1: str, word2: str, word_to_phonemes: PRONUNCIATION_DICT) \
