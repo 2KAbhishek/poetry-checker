@@ -26,6 +26,7 @@ All of the files in this folder are:
 Copyright (c) 2022 the University of Toronto CSC108 Teaching Team.
 """
 
+from distutils.command.clean import clean
 from typing import List, Tuple, Dict
 
 from poetry_constants import (POEM_LINE, POEM, PHONEMES, PRONUNCIATION_DICT,
@@ -71,13 +72,13 @@ def is_vowel_phoneme(phoneme: str) -> bool:
 
 # ===================== Add Your Helper Functions Here =====================
 
-def clean_punctuation(line: str) -> str:
+def clean_str(line: str) -> str:
     punctuation = """!"'`@$%^&_-+={}|\\/,;:.-?)([]<>*#\n\t\r"""
     temp_line = []
     for char in line:
         if char not in punctuation:
             temp_line.append(char)
-    return ''.join(temp_line)
+    return ''.join(temp_line).upper()
 
 
 # ===================== Required Functions =================================
@@ -101,7 +102,7 @@ def get_syllable_count(poem_line: POEM_LINE,
     >>> get_syllable_count(line, word_to_phonemes)
     5
     """
-    poem_line = clean_punctuation(transform_string(poem_line))
+    poem_line = clean_str(poem_line)
     print(poem_line)
     words = poem_line.split()
     syllable_count = 0
@@ -188,6 +189,10 @@ def words_rhyme(word1: str, word2: str, word_to_phonemes: PRONUNCIATION_DICT) \
     >>> words_rhyme('thine', 'heard', word_to_phonemes)
     False
     """
+    word1_phonemes = word_to_phonemes[clean_str(word1)]
+    word2_phonemes = word_to_phonemes[clean_str(word2)]
+    return get_last_syllable(word1_phonemes) == get_last_syllable(word2_phonemes)
+
 
 
 def all_lines_rhyme(poem_lines: POEM, lines_to_check: List[int],
