@@ -108,6 +108,15 @@ class TestCheckSyllableCounts(unittest.TestCase):
         expected = ['With a gap before the next.', 'Then the poem ends.']
         self.assertEqual(actual, expected, 'check syllable counts')
 
+    def test_check_syllable_counts_empty(self):
+        """Test check_syllable_counts on poem lines, empty scenario."""
+        poem_lines = ['The first line leads off,']
+        description = ((0,), ('*'))
+
+        actual = poetry_functions.check_syllable_counts(poem_lines, description, self.word_to_phonemes)
+        expected = []
+        self.assertEqual(actual, expected, 'check syllable counts')
+
 
 class TestReadPronunciation(unittest.TestCase):
     def test_read_pronunciation(self):
