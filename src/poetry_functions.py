@@ -251,6 +251,14 @@ def get_symbol_to_lines(rhyme_scheme: Tuple[str]) -> Dict[str, List[int]]:
     >>> expected == result
     True
     """
+    symbol_to_lines = {}
+    for index in range(len(rhyme_scheme)):
+        symbol = rhyme_scheme[index]
+        if symbol not in symbol_to_lines:
+            symbol_to_lines[symbol] = [index]
+        else:
+            symbol_to_lines[symbol].append(index)
+    return symbol_to_lines
 
 
 def check_rhyme_scheme(poem_lines: POEM,
