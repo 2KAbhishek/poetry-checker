@@ -49,6 +49,15 @@ def read_pronunciation(pronunciation_file: TextIO) -> PRONUNCIATION_DICT:
     ...                      'SMITH': ('S', 'M', 'IH1', 'TH')}
     True
     """
+    word_to_phonemes = {}
+    for line in pronunciation_file:
+        line = line.strip()
+        if line == '' or line[0] == ';':
+            continue
+        word, phonemes = line.split('  ')
+        phonemes = tuple(phonemes.split())
+        word_to_phonemes[word] = phonemes
+    return word_to_phonemes
 
 
 def read_poetry_form_descriptions(poetry_forms_file: TextIO) \
