@@ -55,6 +55,16 @@ def get_poetry_form_names(poetry_forms_file: TextIO) -> List[str]:
 
 def get_poetry_form_name_lines(poetry_forms_file: TextIO,
                                poetry_form_name: str) -> List[int]:
+    """Return the first and last lines in poetry_forms_file that contain
+    details for poetry_form_name.
+    >>> import os
+    >>> small_pf = open(os.path.dirname(__file__) +\
+        '/datasets/poetry_forms_small.txt')
+    >>> poetry_form_name_lines = get_poetry_form_name_lines(small_pf, 'Haiku')
+    >>> small_pf.close()
+    >>> poetry_form_name_lines == [1, 3]
+    True
+    """
     start, end, index = -1, -1, 0
     poetry_forms_file.seek(0)
     for line in poetry_forms_file:
