@@ -26,12 +26,23 @@ All of the files in this folder are:
 Copyright (c) 2022 the University of Toronto CSC108 Teaching Team.
 """
 
-from typing import TextIO
+from typing import TextIO, List, Tuple
 
 from poetry_constants import (POETRY_FORMS_DICT, PRONUNCIATION_DICT)
 
 
 # ===================== Add Your Helper Functions Here =====================
+def get_poetry_form_names(poetry_forms_file: TextIO) -> List[str]:
+    poetry_forms_file.seek(0)
+    poetry_form_names = []
+    for line in poetry_forms_file:
+        line = line.strip()
+        if line == '':
+            continue
+        if len(line.split()[0]) > 3:
+            poetry_form_names.append(line)
+    print(poetry_form_names)
+    return poetry_form_names
 
 
 # ===================== Required Functions =================================
