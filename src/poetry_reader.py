@@ -43,7 +43,9 @@ def get_poetry_form_names(poetry_forms_file: TextIO) -> List[str]:
             poetry_form_names.append(line)
     return poetry_form_names
 
-def get_poetry_form_name_lines(poetry_forms_file: TextIO, poetry_form_name: str) -> List[int]:
+
+def get_poetry_form_name_lines(poetry_forms_file: TextIO,
+                               poetry_form_name: str) -> List[int]:
     start, end, index = -1, -1, 0
     poetry_forms_file.seek(0)
     for line in poetry_forms_file:
@@ -58,7 +60,9 @@ def get_poetry_form_name_lines(poetry_forms_file: TextIO, poetry_form_name: str)
     end = index - 1 if end == -1 else end
     return [start, end]
 
-def get_poetry_form_details(poetry_forms_file: TextIO, lines: List[int]) -> Tuple[Tuple[int], Tuple[str]]:
+
+def get_poetry_form_details(poetry_forms_file: TextIO,
+                            lines: List[int]) -> Tuple[Tuple[int], Tuple[str]]:
     syllable_counts = []
     rhyming_part = []
     i = 0
@@ -84,7 +88,8 @@ def read_pronunciation(pronunciation_file: TextIO) -> PRONUNCIATION_DICT:
     Pronouncing Dictionary.
 
     >>> import os
-    >>> small_pd = open(os.path.dirname(__file__) + '/datasets/pronunciation_dictionary_small.txt')
+    >>> small_pd = open(os.path.dirname(__file__) +\
+         '/datasets/pronunciation_dictionary_small.txt')
     >>> word_to_phonemes = read_pronunciation(small_pd)
     >>> small_pd.close()
     >>> word_to_phonemes == {'CAMPBELL': ('K', 'AE1', 'M', 'B', 'AH0', 'L'),
@@ -109,7 +114,8 @@ def read_poetry_form_descriptions(poetry_forms_file: TextIO) \
     the poetry forms in poetry_forms_file.
 
     >>> import os
-    >>> small_pf = open(os.path.dirname(__file__) + '/datasets/poetry_forms_small.txt')
+    >>> small_pf = open(os.path.dirname(__file__) +\
+         '/datasets/poetry_forms_small.txt')
     >>> name_to_description = read_poetry_form_descriptions(small_pf)
     >>> small_pf.close()
     >>> name_to_description == {
