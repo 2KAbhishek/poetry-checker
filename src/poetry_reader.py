@@ -66,6 +66,25 @@ def get_poetry_form_name_lines(poetry_forms_file: TextIO, poetry_form_name: str)
     print ([start, end])
     return [start, end]
 
+def get_poetry_form_details(poetry_forms_file: TextIO, lines: List[int]) -> Tuple[Tuple[int], Tuple[str]]:
+    syllable_counts = []
+    rhyming_part = []
+    i = 0
+    poetry_forms_file.seek(0)
+
+    for line in poetry_forms_file:
+        if i >= lines[0] and i <= lines[1]:
+            line = line.strip()
+            if line == '':
+                continue
+            count, rhyme = line.split()
+            syllable_counts.append(int(count))
+            rhyming_part.append(rhyme)
+        i += 1
+    print(syllable_counts, rhyming_part)
+    return tuple([tuple(syllable_counts), tuple(rhyming_part)])
+
+
 # ===================== Required Functions =================================
 
 def read_pronunciation(pronunciation_file: TextIO) -> PRONUNCIATION_DICT:
