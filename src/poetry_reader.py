@@ -124,6 +124,12 @@ def read_poetry_form_descriptions(poetry_forms_file: TextIO) \
     ...     'Limerick': ((8, 8, 5, 5, 8), ('A', 'A', 'B', 'B', 'A'))}
     True
     """
+    poetry_forms = {}
+    poetry_form_names = get_poetry_form_names(poetry_forms_file)
+    for name in poetry_form_names:
+        lines = get_poetry_form_name_lines(poetry_forms_file, name)
+        poetry_forms[name] = get_poetry_form_details(poetry_forms_file, lines)
+    return poetry_forms
 
 
 if __name__ == '__main__':
