@@ -49,6 +49,7 @@ class TestGetLastSyllable(unittest.TestCase):
         expected = ('IH0', 'N', 'TH')
         self.assertEqual(actual, expected, 'get syllables')
 
+class TestGetSyllableCount(unittest.TestCase):
     def test_get_syllable_count(self):
         """Test get_syllable_count on a poem line."""
         word_to_phonemes = {'THEN': ('DH', 'EH1', 'N'),
