@@ -41,19 +41,12 @@ def get_poetry_form_names(poetry_forms_file: TextIO) -> List[str]:
             continue
         if len(line.split()[0]) > 3:
             poetry_form_names.append(line)
-    print(poetry_form_names)
     return poetry_form_names
 
 def get_poetry_form_name_lines(poetry_forms_file: TextIO, poetry_form_name: str) -> List[int]:
     start, end, index = -1, -1, 0
     poetry_forms_file.seek(0)
-    print(poetry_form_name)
     for line in poetry_forms_file:
-        print("Line: " + line)
-        print("index: " + str(index))
-        print("start: " + str(start))
-        print("end: " + str(end))
-        print("len(line): " + str(len(line)))
         line = line.strip()
         if len(line) == 0 and start != -1:
             end = index - 1
@@ -63,7 +56,6 @@ def get_poetry_form_name_lines(poetry_forms_file: TextIO, poetry_form_name: str)
             break
         index += 1
     end = index - 1 if end == -1 else end
-    print ([start, end])
     return [start, end]
 
 def get_poetry_form_details(poetry_forms_file: TextIO, lines: List[int]) -> Tuple[Tuple[int], Tuple[str]]:
@@ -81,7 +73,6 @@ def get_poetry_form_details(poetry_forms_file: TextIO, lines: List[int]) -> Tupl
             syllable_counts.append(int(count))
             rhyming_part.append(rhyme)
         i += 1
-    print(syllable_counts, rhyming_part)
     return tuple([tuple(syllable_counts), tuple(rhyming_part)])
 
 
