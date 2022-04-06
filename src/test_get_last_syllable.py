@@ -145,6 +145,11 @@ class TestGetSymbolToLines(unittest.TestCase):
         expected = {'A': [0, 1, 4], 'B': [2, 3]}
         self.assertEqual(actual, expected, 'get symbol to lines')
 
+    def test_get_sympol_to_lines_asterisk(self):
+        """Test to generate symbols for lines, asterisks case"""
+        actual = poetry_functions.get_symbol_to_lines(('*', '*', '*', '*', '*'))
+        expected = {'*': [0, 1, 2, 3, 4]}
+        self.assertEqual(actual, expected, 'get symbol to lines')
 
 class TestReadPronunciation(unittest.TestCase):
     def test_read_pronunciation(self):
