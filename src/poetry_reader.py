@@ -92,7 +92,8 @@ def read_pronunciation(pronunciation_file: TextIO) -> PRONUNCIATION_DICT:
     pronunciation_file, an open file that is in the format of the CMU
     Pronouncing Dictionary.
 
-    >>> small_pd = open('datasets/pronunciation_dictionary_small.txt')
+    >>> import os
+    >>> small_pd = open(os.path.dirname(__file__) + '/datasets/pronunciation_dictionary_small.txt')
     >>> word_to_phonemes = read_pronunciation(small_pd)
     >>> small_pd.close()
     >>> word_to_phonemes == {'CAMPBELL': ('K', 'AE1', 'M', 'B', 'AH0', 'L'),
@@ -116,7 +117,8 @@ def read_poetry_form_descriptions(poetry_forms_file: TextIO) \
     """Return a dictionary of poetry form name to poetry form description for
     the poetry forms in poetry_forms_file.
 
-    >>> small_pf = open('datasets/poetry_forms_small.txt')
+    >>> import os
+    >>> small_pf = open(os.path.dirname(__file__) + '/datasets/poetry_forms_small.txt')
     >>> name_to_description = read_poetry_form_descriptions(small_pf)
     >>> small_pf.close()
     >>> name_to_description == {
