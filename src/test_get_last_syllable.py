@@ -151,6 +151,33 @@ class TestGetSymbolToLines(unittest.TestCase):
         expected = {'*': [0, 1, 2, 3, 4]}
         self.assertEqual(actual, expected, 'get symbol to lines')
 
+class TestCheckRhymeScheme(unittest.TestCase):
+    word_to_phonemes = {'NEXT': ('N', 'EH1', 'K', 'S', 'T'),
+                        'GAP': ('G', 'AE1', 'P'),
+                        'BEFORE': ('B', 'IH0', 'F', 'AO1', 'R'),
+                        'LEADS': ('L', 'IY1', 'D', 'Z'),
+                        'WITH': ('W', 'IH1', 'DH'),
+                        'LINE': ('L', 'AY1', 'N'),
+                        'THEN': ('DH', 'EH1', 'N'),
+                        'THE': ('DH', 'AH0'),
+                        'A': ('AH0'),
+                        'FIRST': ('F', 'ER1', 'S', 'T'),
+                        'ENDS': ('EH1', 'N', 'D', 'Z'),
+                        'POEM': ('P', 'OW1', 'AH0', 'M'),
+                        'OFF': ('AO1', 'F')}
+
+    def test_check_rhyme_scheme(self):
+        """Test check_rhyme_scheme on poem lines."""
+        poem_lines = ['The first line leads off,',
+                  'With a gap before the next.', 'Then the poem ends.']
+        description = ((5, 7, 5), ('A', 'B', 'A'))
+
+        actual = poetry_functions.check_rhyme_scheme(poem_lines, description,
+                                    self.word_to_phonemes)
+        actual.sort()
+        expected = [['The first line leads off,', 'Then the poem ends.']]
+        self.assertEqual(actual, expected, 'check rhyme scheme')
+
 class TestReadPronunciation(unittest.TestCase):
     def test_read_pronunciation(self):
         """Test phonemes on a pronunciation dictionary."""
