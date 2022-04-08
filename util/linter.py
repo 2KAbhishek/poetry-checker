@@ -4,8 +4,12 @@ from typing import Any, Dict
 from copy import deepcopy
 import unittest
 import linter_generic
-import poetry_functions
-import poetry_reader
+
+import sys
+sys.path.append(".")
+
+import src.poetry_functions as poetry_functions
+import src.poetry_reader as poetry_reader
 
 PYTA_CONFIG = 'pyta.json'
 FILENAME_FUNCTIONS = os.path.dirname(__file__) +\

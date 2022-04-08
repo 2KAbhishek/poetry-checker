@@ -91,12 +91,7 @@ def run_pyta(filename: str, config_file: str) -> None:
     import json
     install_python_ta()
 
-    error_message = '\nCould not install or run the style checker correctly.\n' \
-                    'Please try to re-run the checker once more.\n\n' \
-                    'If you have already tried to re-run it, please go to office hours\n' \
-                    'in order to resolve this. ' \
-                    'For now, you may upload your code to MarkUs and run the self-test\n' \
-                    'to see the style checker results.'
+    error_message = '\nCould not install or run the style checker correctly.\n'
 
     python_ta = reimport_python_ta()
     if python_ta:
