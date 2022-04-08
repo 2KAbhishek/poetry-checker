@@ -35,9 +35,12 @@ import poetry_reader
 from poetry_constants import (POEM, PRONUNCIATION_DICT,
                               POETRY_FORM_DESCRIPTION, POETRY_FORMS_DICT)
 
-DICTIONARY_FILENAME = 'datasets/pronunciation_dictionary.txt'
-POETRY_FORMS_FILENAME = 'datasets/poetry_forms.txt'
-SAMPLE_POEMS_FOLDER = 'sample_poems'
+DICTIONARY_FILENAME = os.path.dirname(__file__) +\
+     '/../data/pronunciation_dictionary.txt'
+POETRY_FORMS_FILENAME = os.path.dirname(__file__) +\
+     '/../data/poetry_forms.txt'
+SAMPLE_POEMS_FOLDER = os.path.dirname(__file__) +\
+     '/../data/sample_poems'
 
 
 def get_poem_filename(msg: str) -> str:

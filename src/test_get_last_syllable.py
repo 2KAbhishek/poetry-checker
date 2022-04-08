@@ -194,7 +194,7 @@ class TestReadPronunciation(unittest.TestCase):
         """Test phonemes on a pronunciation dictionary."""
         import os
         small_pd = open(os.path.dirname(__file__) +
-                        '/datasets/pronunciation_dictionary_small.txt')
+                        '/../data/pronunciation_dictionary_small.txt')
         actual = poetry_reader.read_pronunciation(small_pd)
 
         expected = {'CAMPBELL': ('K', 'AE1', 'M', 'B', 'AH0', 'L'),
@@ -208,7 +208,7 @@ class TestReadPoetryFormDetails(unittest.TestCase):
         """Test whether the poetry form details are read correctly."""
         import os
         small_pf = open(os.path.dirname(__file__) +
-                        '/datasets/poetry_forms_small.txt')
+                        '/../data/poetry_forms_small.txt')
         actual = poetry_reader.read_poetry_form_descriptions(small_pf)
         expected = {
             'Haiku': ((5, 7, 5), ('*', '*', '*')),

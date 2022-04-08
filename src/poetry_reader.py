@@ -36,7 +36,7 @@ def get_poetry_form_names(poetry_forms_file: TextIO) -> List[str]:
     """Return a list of poetry form names in poetry_forms_file.
     >>> import os
     >>> small_pf = open(os.path.dirname(__file__) +\
-     '/datasets/poetry_forms_small.txt')
+     '/../data/poetry_forms_small.txt')
     >>> poetry_form_names = get_poetry_form_names(small_pf)
     >>> small_pf.close()
     >>> poetry_form_names == ['Haiku', 'Limerick']
@@ -59,7 +59,7 @@ def get_poetry_form_name_lines(poetry_forms_file: TextIO,
     details for poetry_form_name.
     >>> import os
     >>> small_pf = open(os.path.dirname(__file__) +\
-        '/datasets/poetry_forms_small.txt')
+        '/../data/poetry_forms_small.txt')
     >>> poetry_form_name_lines = get_poetry_form_name_lines(small_pf, 'Haiku')
     >>> small_pf.close()
     >>> poetry_form_name_lines == [1, 3]
@@ -86,7 +86,7 @@ def get_poetry_form_details(poetry_forms_file: TextIO,
     starts at the first lines[0] and ends at the lines[1].
     >>> import os
     >>> small_pf = open(os.path.dirname(__file__) +\
-        '/datasets/poetry_forms_small.txt')
+        '/../data/poetry_forms_small.txt')
     >>> poetry_form_details = get_poetry_form_details(small_pf, [1, 3])
     >>> small_pf.close()
     >>> poetry_form_details == ((5, 7, 5), ('*', '*', '*'))
@@ -118,7 +118,7 @@ def read_pronunciation(pronunciation_file: TextIO) -> PRONUNCIATION_DICT:
 
     >>> import os
     >>> small_pd = open(os.path.dirname(__file__) +\
-         '/datasets/pronunciation_dictionary_small.txt')
+         '/../data/pronunciation_dictionary_small.txt')
     >>> word_to_phonemes = read_pronunciation(small_pd)
     >>> small_pd.close()
     >>> word_to_phonemes == {'CAMPBELL': ('K', 'AE1', 'M', 'B', 'AH0', 'L'),
@@ -144,7 +144,7 @@ def read_poetry_form_descriptions(poetry_forms_file: TextIO) \
 
     >>> import os
     >>> small_pf = open(os.path.dirname(__file__) +\
-         '/datasets/poetry_forms_small.txt')
+         '/../data/poetry_forms_small.txt')
     >>> name_to_description = read_poetry_form_descriptions(small_pf)
     >>> small_pf.close()
     >>> name_to_description == {
@@ -163,4 +163,4 @@ def read_poetry_form_descriptions(poetry_forms_file: TextIO) \
 if __name__ == '__main__':
     import doctest
     # Uncomment the line below if you prefer to test your examples with doctest
-    # doctest.testmod()
+    doctest.testmod()
