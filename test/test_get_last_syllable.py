@@ -25,10 +25,11 @@ this code, whether as given or with any changes, are expressly prohibited.
 All of the files in this folder are:
 Copyright (c) 2022 the University of Toronto CSC108 Teaching Team.
 """
-
+import os.path
 import unittest
-import poetry_functions
-import poetry_reader
+
+import src.poetry_functions as poetry_functions
+import src.poetry_reader as poetry_reader
 
 
 class TestGetLastSyllable(unittest.TestCase):
