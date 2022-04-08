@@ -1,36 +1,12 @@
-"""CSC108H1: Assignment 3: Poetry Form Checker
-
-Instructions (READ THIS FIRST!)
-===============================
-
-Make sure that the code files:
-    poetry_constants.py, poetry_functions.py, poetry_reader.py,
-are in the same folder as this file (a3_checker.py), and a3_pyta.json 
-and checker_generic.py,
-
-DO NOT MAKE CHANGES TO THIS FILE.
-
-Copyright and Usage Information
-===============================
-
-This code is provided solely for the personal and private use of students
-taking the course CSC108 at the University of Toronto. Copying for purposes
-other than this use is expressly prohibited. All forms of distribution of
-this code, whether as given or with any changes, are expressly prohibited.
-
-All of the files in this folder are:
-Copyright (c) 2022 the University of Toronto CSC108 Teaching Team.
-"""
-
 from io import StringIO
 from typing import Any, Dict
 from copy import deepcopy
 import unittest
-import checker_generic
+import linter_generic
 import poetry_functions
 import poetry_reader
 
-PYTA_CONFIG = 'a3_pyta.json'
+PYTA_CONFIG = 'pyta.json'
 FILENAME_FUNCTIONS = 'poetry_functions.py'
 FILENAME_READER = 'poetry_reader.py'
 TARGET_LEN = 79
@@ -46,7 +22,7 @@ SAMPLE_POETRY_FORM_FILE = '''Limerick
 
 Haiku
 5 *
-7 * 
+7 *
 5 *
 '''
 
@@ -133,7 +109,7 @@ class CheckTest(unittest.TestCase):
                             'HEARD': ('HH', 'ER1', 'D')}
         word_to_phonemes_copy = deepcopy(word_to_phonemes)
 
-        self._check(poetry_functions.words_rhyme, 
+        self._check(poetry_functions.words_rhyme,
                     ['thine', 'devine', word_to_phonemes], bool)
         self._check_no_mutation(poetry_functions.words_rhyme,
                                 word_to_phonemes, word_to_phonemes_copy)
@@ -231,20 +207,20 @@ class CheckTest(unittest.TestCase):
         """
 
         print('\nChecking {}...'.format(func.__name__))
-        result = checker_generic.check(func, args, ret_type)
+        result = linter_generic.check(func, args, ret_type)
         self.assertTrue(result[0], result[1])
         print('  check complete')
 
-        
+
     def _check_no_mutation(self, func: callable, actual, expected) -> None:
         """Check that func does not mutate that argument actual so that
         it still matches expected.
         """
-        self.assertTrue(expected == actual, 
+        self.assertTrue(expected == actual,
                         '{0} should not mutate its arguments'.format(
                             func.__name__))
 
-        
+
     def _test_returns_collection_of(self, func, args, coll_type, types):
         """Check that func when called with args returns a coll_type of
         elements of typef from types.
@@ -255,7 +231,7 @@ class CheckTest(unittest.TestCase):
 
         coll_type_name = coll_type.__name__
 
-        result = checker_generic.check(func, args, coll_type)
+        result = linter_generic.check(func, args, coll_type)
         self.assertTrue(result[0], result[1])
 
         msg = '{} should return a {} of length {}'
@@ -279,7 +255,7 @@ class CheckTest(unittest.TestCase):
 
         print('\nChecking {}...'.format(func.__name__))
 
-        result = checker_generic.check(func, args, dict)
+        result = linter_generic.check(func, args, dict)
         self.assertTrue(result[0], result[1])
 
         msg = '{} should return a Dict[str, List[int]] ' + \
@@ -301,7 +277,7 @@ class CheckTest(unittest.TestCase):
 
         print('\nChecking {}...'.format(func.__name__))
 
-        result = checker_generic.check(func, args, dict)
+        result = linter_generic.check(func, args, dict)
         self.assertTrue(result[0], result[1])
 
         msg = '{} should return a Dict[str, Tuple[str]] ' + \
@@ -323,7 +299,7 @@ class CheckTest(unittest.TestCase):
 
         print('\nChecking {}...'.format(func.__name__))
 
-        result = checker_generic.check(func, args, list)
+        result = linter_generic.check(func, args, list)
         self.assertTrue(result[0], result[1])
 
         msg = '{} should return a List[List[str]] ' + \
@@ -346,7 +322,7 @@ class CheckTest(unittest.TestCase):
 
         print('\nChecking {}...'.format(func.__name__))
 
-        result = checker_generic.check(func, args, dict)
+        result = linter_generic.check(func, args, dict)
         self.assertTrue(result[0], result[1])
 
         msg = '{} should return a Dict[str, Tuple[Tuple[int], Tuple[str]]]' + \
@@ -374,8 +350,8 @@ class CheckTest(unittest.TestCase):
 
 print(''.center(TARGET_LEN, SEP))
 print(' Start: checking coding style '.center(TARGET_LEN, SEP))
-checker_generic.run_pyta(FILENAME_FUNCTIONS, PYTA_CONFIG)
-checker_generic.run_pyta(FILENAME_READER, PYTA_CONFIG)
+linter_generic.run_pyta(FILENAME_FUNCTIONS, PYTA_CONFIG)
+linter_generic.run_pyta(FILENAME_READER, PYTA_CONFIG)
 print(' End checking coding style '.center(TARGET_LEN, SEP))
 
 print('\n' + ' Start: checking type contracts '.center(TARGET_LEN, SEP))
