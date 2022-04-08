@@ -1,4 +1,5 @@
 from io import StringIO
+import os.path
 from typing import Any, Dict
 from copy import deepcopy
 import unittest
@@ -7,8 +8,10 @@ import poetry_functions
 import poetry_reader
 
 PYTA_CONFIG = 'pyta.json'
-FILENAME_FUNCTIONS = 'poetry_functions.py'
-FILENAME_READER = 'poetry_reader.py'
+FILENAME_FUNCTIONS = os.path.dirname(__file__) +\
+    '/../src/poetry_functions.py'
+FILENAME_READER = os.path.dirname(__file__) +\
+    '/../src/poetry_reader.py'
 TARGET_LEN = 79
 SEP = '='
 
@@ -56,7 +59,6 @@ class CheckTest(unittest.TestCase):
         self._check_no_mutation(poetry_functions.get_syllable_count,
                                 word_to_phonemes, word_to_phonemes_copy)
 
-
     def test_check_syllable_counts(self) -> None:
         """Function check_syllable_counts."""
 
@@ -80,14 +82,13 @@ class CheckTest(unittest.TestCase):
         word_to_phonemes_copy = deepcopy(word_to_phonemes)
         types = (str, str)
 
-        self._test_returns_collection_of( \
+        self._test_returns_collection_of(
             poetry_functions.check_syllable_counts,
             [poem_lines, description, word_to_phonemes], list, types)
         self._check_no_mutation(poetry_functions.check_syllable_counts,
                                 poem_lines, poem_lines_copy)
         self._check_no_mutation(poetry_functions.check_syllable_counts,
                                 word_to_phonemes, word_to_phonemes_copy)
-
 
     # Functions related to rhyming
 
@@ -97,9 +98,8 @@ class CheckTest(unittest.TestCase):
         phoneme = ('AE1', 'B', 'S', 'IH0', 'N', 'TH')
         types = (str, str, str)
 
-        self._test_returns_collection_of( \
+        self._test_returns_collection_of(
             poetry_functions.get_last_syllable, [phoneme], tuple, types)
-
 
     def test_words_rhyme(self) -> None:
         """Function words_rhyme."""
@@ -113,7 +113,6 @@ class CheckTest(unittest.TestCase):
                     ['thine', 'devine', word_to_phonemes], bool)
         self._check_no_mutation(poetry_functions.words_rhyme,
                                 word_to_phonemes, word_to_phonemes_copy)
-
 
     def test_all_lines_rhyme(self) -> None:
         """Function all_lines_rhyme."""
@@ -145,9 +144,8 @@ class CheckTest(unittest.TestCase):
 
         rhyme_scheme = ('A', 'A', 'B', 'B', 'A')
 
-        self._test_returns_dict_of_str_to_list_of_int( \
+        self._test_returns_dict_of_str_to_list_of_int(
             poetry_functions.get_symbol_to_lines, [rhyme_scheme])
-
 
     def test_check_rhyme_scheme(self) -> None:
         """Function check_rhyme_scheme."""
@@ -172,7 +170,7 @@ class CheckTest(unittest.TestCase):
         word_to_phonemes_copy = deepcopy(word_to_phonemes)
         types = (str, str)
 
-        self._test_returns_list_of_list_of_str( \
+        self._test_returns_list_of_list_of_str(
             poetry_functions.check_rhyme_scheme,
             [poem_lines, description, word_to_phonemes])
         self._check_no_mutation(poetry_functions.check_rhyme_scheme,
@@ -180,21 +178,19 @@ class CheckTest(unittest.TestCase):
         self._check_no_mutation(poetry_functions.check_rhyme_scheme,
                                 word_to_phonemes, word_to_phonemes_copy)
 
-
     # Functions from poetry_reader.py
 
     def test_read_pronunciation(self) -> None:
         """A simple check for read_pronunciation."""
 
-        self._test_returns_dict_of_str_to_tuple_of_str( \
+        self._test_returns_dict_of_str_to_tuple_of_str(
             poetry_reader.read_pronunciation,
             [StringIO(SAMPLE_DICTIONARY_FILE)])
-
 
     def test_read_poetry_form_descriptions(self) -> None:
         """A simple check for read_poetry_form_descriptions."""
 
-        self._test_returns_poetry_forms_dict( \
+        self._test_returns_poetry_forms_dict(
             poetry_reader.read_poetry_form_descriptions,
             [StringIO(SAMPLE_POETRY_FORM_FILE)])
 
@@ -211,7 +207,6 @@ class CheckTest(unittest.TestCase):
         self.assertTrue(result[0], result[1])
         print('  check complete')
 
-
     def _check_no_mutation(self, func: callable, actual, expected) -> None:
         """Check that func does not mutate that argument actual so that
         it still matches expected.
@@ -219,7 +214,6 @@ class CheckTest(unittest.TestCase):
         self.assertTrue(expected == actual,
                         '{0} should not mutate its arguments'.format(
                             func.__name__))
-
 
     def _test_returns_collection_of(self, func, args, coll_type, types):
         """Check that func when called with args returns a coll_type of
@@ -247,7 +241,6 @@ class CheckTest(unittest.TestCase):
 
         print('  check complete')
 
-
     def _test_returns_dict_of_str_to_list_of_int(self, func, args):
         """Check that func when called with args returns a dict that maps
         objects of type str to objects of type list of int.
@@ -262,13 +255,12 @@ class CheckTest(unittest.TestCase):
               'but instead returned {}'
         for key, value in result[1].items():
             self.assertTrue(isinstance(key, str) and isinstance(value, list),
-                msg.format(func.__name__, result[1]))
+                            msg.format(func.__name__, result[1]))
             for item in value:
                 self.assertTrue(isinstance(item, int),
-                    msg.format(func.__name__, result[1]))
+                                msg.format(func.__name__, result[1]))
 
         print('  check complete')
-
 
     def _test_returns_dict_of_str_to_tuple_of_str(self, func, args):
         """Check that func when called with args returns a dict that maps
@@ -284,13 +276,12 @@ class CheckTest(unittest.TestCase):
               'but instead returned {}'
         for key, value in result[1].items():
             self.assertTrue(isinstance(key, str) and isinstance(value, tuple),
-                msg.format(func.__name__, result[1]))
+                            msg.format(func.__name__, result[1]))
             for item in value:
                 self.assertTrue(isinstance(item, str),
-                    msg.format(func.__name__, result[1]))
+                                msg.format(func.__name__, result[1]))
 
         print('  check complete')
-
 
     def _test_returns_list_of_list_of_str(self, func, args):
         """Check that func when called with args returns a list of
@@ -306,13 +297,12 @@ class CheckTest(unittest.TestCase):
               'but instead returned {}'
         for outer_item in result[1]:
             self.assertTrue(isinstance(outer_item, list),
-                msg.format(func.__name__, result[1]))
+                            msg.format(func.__name__, result[1]))
             for inner_item in outer_item:
                 self.assertTrue(isinstance(inner_item, str),
-                    msg.format(func.__name__, result[1]))
+                                msg.format(func.__name__, result[1]))
 
         print('  check complete')
-
 
     def _test_returns_poetry_forms_dict(self, func, args):
         """Check that func when called with args returns a dict that maps
@@ -329,21 +319,21 @@ class CheckTest(unittest.TestCase):
               ' with parallel inner Tuples but instead returned {}'
         for key, value in result[1].items():
             self.assertTrue(isinstance(key, str) and isinstance(value, tuple),
-                msg.format(func.__name__, result[1]))
+                            msg.format(func.__name__, result[1]))
 
             self.assertEqual(len(value), 2,
-                         msg.format(func.__name__, result[1]))
+                             msg.format(func.__name__, result[1]))
 
             types = (int, str)
             for i in range(len(types)):
                 self.assertTrue(isinstance(value[i], tuple),
-                    msg.format(func.__name__, result[1]))
+                                msg.format(func.__name__, result[1]))
                 for item in value[i]:
                     self.assertTrue(isinstance(item, types[i]),
-                        msg.format(func.__name__, result[1]))
+                                    msg.format(func.__name__, result[1]))
 
             self.assertEqual(len(value[0]), len(value[1]),
-                         msg.format(func.__name__, result[1]))
+                             msg.format(func.__name__, result[1]))
 
         print('  check complete')
 

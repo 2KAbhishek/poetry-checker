@@ -1,31 +1,3 @@
-"""CSC108H1: Assignment 3: Poetry Form Checker
-
-Instructions (READ THIS FIRST!)
-===============================
-
-Make sure that the code files:
-    poetry_functions.py, poetry_program.py, poetry_reader.py,
-    test_get_last_syllable.py,
-    a3_checker.py, a3_pyta.json and checker_generic.py,
-the folder dataset that includes files:
-    pronunication_dictionary.txt, pronunication_dictionary_small.txt,
-    poetry_forms.txt and poetry_forms_small.txt, and
-the folder sample_poems that includes files:
-    haiku1.txt, haiku2.txt, etc.
-are in the same folder as this file (poetry_constants.py).
-
-Copyright and Usage Information
-===============================
-
-This code is provided solely for the personal and private use of students
-taking the course CSC108 at the University of Toronto. Copying for purposes
-other than this use is expressly prohibited. All forms of distribution of
-this code, whether as given or with any changes, are expressly prohibited.
-
-All of the files in this folder are:
-Copyright (c) 2022 the University of Toronto CSC108 Teaching Team.
-"""
-
 from typing import Dict, List, Tuple
 
 """
