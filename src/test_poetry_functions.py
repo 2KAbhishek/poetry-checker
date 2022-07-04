@@ -1,4 +1,4 @@
-import src.poetry_functions as poetry_functions
+import poetry_functions as poetry_functions
 import os.path
 import unittest
 import sys

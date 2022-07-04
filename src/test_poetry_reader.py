@@ -1,4 +1,4 @@
-import src.poetry_reader as poetry_reader
+import poetry_reader as poetry_reader
 import os.path
 import unittest
 import sys
