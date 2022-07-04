@@ -26,7 +26,7 @@
 <h3>Analyze your poetry ✍🏻📃</h3>
 
 <figure>
-  <img src= "images/screenshot.png" alt="poetry-checker Demo" style="width:100%">
+  <img src= "images/screenshot.jpg" alt="poetry-checker Demo">
   <br/>
   <figcaption>poetry-checker screenshot</figcaption>
 </figure>
