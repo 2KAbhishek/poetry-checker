@@ -16,6 +16,7 @@ class TestReadPronunciation(unittest.TestCase):
         expected = {'CAMPBELL': ('K', 'AE1', 'M', 'B', 'AH0', 'L'),
                     'GRIES': ('G', 'R', 'AY1', 'Z'),
                     'SMITH': ('S', 'M', 'IH1', 'TH')}
+        small_pd.close()
         self.assertEqual(actual, expected, 'read pronunciation')
 
 
@@ -29,6 +30,7 @@ class TestReadPoetryFormDetails(unittest.TestCase):
         expected = {
             'Haiku': ((5, 7, 5), ('*', '*', '*')),
             'Limerick': ((8, 8, 5, 5, 8), ('A', 'A', 'B', 'B', 'A'))}
+        small_pf.close()
         self.assertEqual(actual, expected, 'read poetry form details')
 
 
