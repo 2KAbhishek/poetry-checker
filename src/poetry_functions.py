@@ -290,4 +290,4 @@ def check_rhyme_scheme(poem_lines: POEM,
 if __name__ == '__main__':
     import doctest
     # Uncomment the line below if you prefer to test your examples with doctest
-    # doctest.testmod()
+    doctest.testmod()
