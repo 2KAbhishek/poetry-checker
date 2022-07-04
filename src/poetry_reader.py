@@ -1,6 +1,6 @@
 from typing import TextIO, List, Tuple
 
-from src.poetry_constants import (POETRY_FORMS_DICT, PRONUNCIATION_DICT)
+from poetry_constants import (POETRY_FORMS_DICT, PRONUNCIATION_DICT)
 
 
 # ===================== Add Your Helper Functions Here =====================

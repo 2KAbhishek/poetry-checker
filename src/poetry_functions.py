@@ -1,6 +1,6 @@
 from typing import List, Tuple, Dict
 
-from src.poetry_constants import (POEM_LINE, POEM, PHONEMES, PRONUNCIATION_DICT,
+from poetry_constants import (POEM_LINE, POEM, PHONEMES, PRONUNCIATION_DICT,
                                   POETRY_FORM_DESCRIPTION)
 
 # ===================== Provided Helper Functions =====================
