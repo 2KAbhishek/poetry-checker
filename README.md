@@ -1,6 +1,6 @@
 <div align = "center">
 
-<h1><a href="https://2kabhishek.github.io/poetry-checker">poetry-checker</a></h1>
+<h1><a href="https://2kabhishek.github.io/poetry-checker">Poetry Checker</a></h1>
 
 <a href="https://github.com/2KAbhishek/poetry-checker/blob/main/LICENSE">
 <img alt="License" src="https://img.shields.io/github/license/2kabhishek/poetry-checker?style=plastic&color=white&label=License"> </a>
@@ -23,7 +23,7 @@
 <a href="https://github.com/2KAbhishek?tab=followers">
 <img alt="Followers" src="https://img.shields.io/github/followers/2kabhishek?color=222&style=plastic&label=Followers"> </a>
 
-<h3>Short sweet headline with 🎇🎉</h3>
+<h3>Analyze your poetry ✍🏻📃</h3>
 
 <figure>
   <img src= "images/screenshot.png" alt="poetry-checker Demo" style="width:100%">
@@ -35,17 +35,18 @@
 
 ## What is this
 
-poetry-checker is a `<utility/tool/feature>` that allows `<insert_target_audience>` to do `<action/task_it_does>`.
+A poetry checking tool that analyzes poems and tells you information about them.
+Can tell you different types of poetry based on dictionary and rhyming.
 
 ## Inspiration
 
-poetry-checker was inspired by `<reason/idea>`.
+Always enjoyed poetry, read about dictionaries and rhyming, implemented this.
 
 ## Prerequisites
 
 Before you begin, ensure you have met the following requirements:
 
-- You have installed the latest version of `<coding_language/dependency/requirement_1>`
+- You have installed the latest version of `python`
 
 ## Getting poetry-checker
 
@@ -54,51 +55,39 @@ To install poetry-checker, follow these steps:
 ```bash
 git clone https://github.com/2kabhishek/poetry-checker
 cd poetry-checker
-<install_command>
 ```
 
 ## Using poetry-checker
 
-```bash
-USAGE:
-    command [FLAGS] [OPTIONS]
+To run poetry-checker, follow these steps: `python src/poetry_program.py`
 
-FLAGS:
-    -h, --help              Prints help information.
+By default it looks at the [sample_poems](./data/sample_poems/) directory, add your poem to the directory and run the program.
+Enter the file name when prompted.
 
-OPTIONS:
-    -o, --option <value>    Option description.
-    Options are: a, b. [default: a]
+## Tests
 
-Example:
+Every module has it's own doctest, which can be run by running `python -m doctest -v <module>`.
+Unit tests can be ran using `python -m unittest`.
 
-
-```
+Custom linter is present in the `util` directory.
 
 ## How it was built
 
-poetry-checker was built using `<tech/library>`
+poetry-checker was built using `python`
 
 ## Challenges faced
 
-While building poetry-checker the main challenges were `<issue/difficulty>`
+Setting up tests was tricky, due to module path issues.
 
 ## What I learned
 
-While building poetry-checker I `<learned/accomplished>` about `<learning/accomplishment>`
+- Learned about `doctest` and found it very useful for documentation.
+- Pronunciation and they are used in rhyming.
+- Different types of poetry.
 
 ## What's next
 
-Planning to add `<feature/module>`.
-
-### To-Do
-
-- [x] Setup repo
-- [ ] Think real hard
-- [ ] Start typing
-- [ ] Change me
-- [ ] Update README
-- [ ] Finish it
+Add CLI flags to pass in poems.txt file.
 
 Hit the ⭐ button if you found this useful.
 
